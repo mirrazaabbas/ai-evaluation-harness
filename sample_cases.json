@@ -1,0 +1,16 @@
+[
+  {
+    "id": "grounded-agent-answer",
+    "context": "Reliable AI agents use tool validation, source grounding, permission limits, and human approval for high-impact actions.",
+    "output": "Reliable AI agents improve safety with tool validation, source grounding, permission limits, and human approval for high-impact actions.",
+    "required_terms": ["tool validation", "source grounding", "human approval"],
+    "max_words": 40
+  },
+  {
+    "id": "rag-definition",
+    "context": "Retrieval-Augmented Generation retrieves relevant source context before a language model generates an answer.",
+    "output": "Retrieval-Augmented Generation retrieves relevant source context before generating an answer, helping the model use grounded information.",
+    "required_terms": ["retrieves", "source context", "grounded"],
+    "max_words": 35
+  }
+]
