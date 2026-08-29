@@ -40,9 +40,8 @@ class EvaluationHarnessTests(unittest.TestCase):
             {"id": "x", "output": "answer", "cost_usd": -0.1},
         ]
         for index, case in enumerate(invalid_cases, 1):
-            with self.subTest(case=case):
-                with self.assertRaises(ValueError):
-                    evaluate.validate_case(case, index)
+            with self.subTest(case=case), self.assertRaises(ValueError):
+                evaluate.validate_case(case, index)
 
     def test_dataset_validation(self):
         with tempfile.TemporaryDirectory() as tmp:
