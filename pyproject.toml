@@ -12,3 +12,7 @@ source = ["evaluate"]
 
 [tool.coverage.report]
 show_missing = true
+exclude_also = [
+  "def main\\(\\) -> None:",
+  "if __name__ == .__main__.:",
+]
