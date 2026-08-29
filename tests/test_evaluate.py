@@ -30,6 +30,20 @@ class EvaluationHarnessTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             evaluate.build_report([{"id": "x", "output": "answer"}], threshold=1.1)
 
+    def test_case_validation_variants(self):
+        invalid_cases = [
+            {},
+            {"id": "x", "output": ""},
+            {"id": "x", "output": "answer", "required_terms": "bad"},
+            {"id": "x", "output": "answer", "expected_citations": "bad"},
+            {"id": "x", "output": "answer", "max_words": 0},
+            {"id": "x", "output": "answer", "cost_usd": -0.1},
+        ]
+        for index, case in enumerate(invalid_cases, 1):
+            with self.subTest(case=case):
+                with self.assertRaises(ValueError):
+                    evaluate.validate_case(case, index)
+
     def test_dataset_validation(self):
         with tempfile.TemporaryDirectory() as tmp:
             folder = Path(tmp)
@@ -45,6 +59,16 @@ class EvaluationHarnessTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 evaluate.load_cases(invalid_metric)
 
+            empty = folder / "empty.json"
+            empty.write_text("[]", encoding="utf-8")
+            with self.assertRaises(ValueError):
+                evaluate.load_cases(empty)
+
+            non_object = folder / "non-object.json"
+            non_object.write_text('["bad"]', encoding="utf-8")
+            with self.assertRaises(ValueError):
+                evaluate.load_cases(non_object)
+
             with self.assertRaises(ValueError):
                 evaluate.load_cases(folder / "missing.json")
 
@@ -54,6 +78,7 @@ class EvaluationHarnessTests(unittest.TestCase):
         self.assertEqual(len(report["cases"]), 2)
         self.assertGreaterEqual(report["pass_rate"], 0.5)
         self.assertEqual(report["threshold"], evaluate.PASS_THRESHOLD)
+        self.assertIsNone(report["average_citation_coverage"])
 
     def test_operational_metrics(self):
         cases = [
@@ -94,6 +119,7 @@ class EvaluationHarnessTests(unittest.TestCase):
         self.assertIn("AI Evaluation Report", rendered)
         self.assertIn("&lt;unsafe&gt;", rendered)
         self.assertNotIn("<unsafe>", rendered)
+        self.assertNotIn("Baseline comparison", evaluate.render_html_report(report))
 
 
 if __name__ == "__main__":
