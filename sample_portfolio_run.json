@@ -1,0 +1,17 @@
+{
+  "schema_version": "portfolio-evidence/v1",
+  "producer": "agent-workflow-engine",
+  "upstream_system": "rag-knowledge-assistant",
+  "query": "Explain grounded RAG",
+  "output": "Grounded RAG uses retrieved evidence.",
+  "retrieved_ids": ["doc-a", "doc-b"],
+  "citations": ["doc-a", "doc-b"],
+  "context": ["Evidence A", "Evidence B"],
+  "retrieval": [
+    {"id": "doc-a", "rank": 1, "score": 0.92},
+    {"id": "doc-b", "rank": 2, "score": 0.81}
+  ],
+  "tool_calls": [{"name": "rag.answer", "arguments": {"top_k": 2}}],
+  "latency_ms": 18,
+  "runtime_events": [{"step": "retrieve_rag_evidence", "status": "ok", "attempt": 1, "elapsed_ms": 18, "detail": ""}]
+}

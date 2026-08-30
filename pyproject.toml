@@ -8,7 +8,7 @@ ignore = ["E501"]
 
 [tool.coverage.run]
 branch = true
-source = ["evaluate", "advanced_metrics"]
+source = ["evaluate", "advanced_metrics", "portfolio_bridge"]
 
 [tool.coverage.report]
 show_missing = true

@@ -1,0 +1,8 @@
+{
+  "reference": "Grounded RAG uses retrieved evidence.",
+  "relevant_ids": ["doc-a"],
+  "expected_citations": ["doc-a"],
+  "expected_tool_calls": [{"name": "rag.answer", "arguments": {"top_k": 2}}],
+  "k": 2,
+  "pass_threshold": 0.75
+}
