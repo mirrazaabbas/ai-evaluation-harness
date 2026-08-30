@@ -28,7 +28,7 @@ Repository = "https://github.com/mirrazaabbas/ai-evaluation-harness"
 Issues = "https://github.com/mirrazaabbas/ai-evaluation-harness/issues"
 
 [tool.setuptools]
-package-dir = {ai_evaluation_harness = "src/ai_evaluation_harness"}
+packages = ["ai_evaluation_harness"]
 py-modules = [
   "evaluate",
   "advanced_metrics",
@@ -40,8 +40,8 @@ py-modules = [
   "ai_platform",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools.package-dir]
+ai_evaluation_harness = "src/ai_evaluation_harness"
 
 [tool.ruff]
 target-version = "py310"
