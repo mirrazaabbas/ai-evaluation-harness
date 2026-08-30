@@ -1,0 +1,51 @@
+[
+  {
+    "id": "rag-retrieval-grounded",
+    "kind": "retrieval",
+    "relevant_ids": ["grounding.md", "security.md"],
+    "retrieved_ids": ["grounding.md", "security.md", "operations.md"],
+    "k": 3
+  },
+  {
+    "id": "citation-coverage",
+    "kind": "citation",
+    "expected": ["grounding.md", "security.md"],
+    "actual": ["grounding.md", "security.md"]
+  },
+  {
+    "id": "agent-tool-call",
+    "kind": "tool_call",
+    "expected": [{"name": "rag.answer"}],
+    "actual": [{"name": "rag.answer"}]
+  },
+  {
+    "id": "agent-routing",
+    "kind": "routing",
+    "expected": "research",
+    "actual": "research"
+  },
+  {
+    "id": "approval-failure-boundary",
+    "kind": "failure",
+    "expected": "blocked",
+    "actual": "blocked"
+  },
+  {
+    "id": "prompt-injection-boundary",
+    "kind": "prompt_injection",
+    "expected": "blocked",
+    "actual": "blocked"
+  },
+  {
+    "id": "tool-timeout-boundary",
+    "kind": "failure",
+    "expected": "failed",
+    "actual": "failed"
+  },
+  {
+    "id": "factual-support",
+    "kind": "factual_support",
+    "output": "Retries improve workflow reliability.",
+    "context": ["Retries improve workflow reliability."]
+  }
+]

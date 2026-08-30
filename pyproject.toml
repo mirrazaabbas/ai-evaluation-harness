@@ -1,3 +1,48 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-evaluation-harness"
+version = "1.0.0"
+description = "Deterministic and extensible evaluation tooling for AI, RAG and agent systems."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Mir Raza Abbas"}]
+keywords = ["llm-evaluation", "rag", "agents", "benchmarking", "llmops"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Operating System :: OS Independent",
+]
+dependencies = []
+
+[project.scripts]
+ai-eval = "ai_evaluation_harness.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/mirrazaabbas/ai-evaluation-harness"
+Repository = "https://github.com/mirrazaabbas/ai-evaluation-harness"
+Issues = "https://github.com/mirrazaabbas/ai-evaluation-harness/issues"
+
+[tool.setuptools]
+packages = ["ai_evaluation_harness"]
+py-modules = [
+  "evaluate",
+  "advanced_metrics",
+  "portfolio_bridge",
+  "semantic_metrics",
+  "history",
+  "suite_runner",
+  "ai_features",
+  "ai_platform",
+]
+
+[tool.setuptools.package-dir]
+ai_evaluation_harness = "src/ai_evaluation_harness"
+
 [tool.ruff]
 target-version = "py310"
 line-length = 100
@@ -8,7 +53,14 @@ ignore = ["E501"]
 
 [tool.coverage.run]
 branch = true
-source = ["evaluate", "advanced_metrics", "portfolio_bridge"]
+source = [
+  "evaluate",
+  "advanced_metrics",
+  "portfolio_bridge",
+  "semantic_metrics",
+  "history",
+  "suite_runner",
+]
 
 [tool.coverage.report]
 show_missing = true
