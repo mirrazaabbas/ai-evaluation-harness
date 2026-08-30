@@ -24,7 +24,7 @@ jobs:
       - name: Install quality tools
         run: python -m pip install --upgrade pip -r requirements-dev.txt
       - name: Compile sources
-        run: python -m compileall -q evaluate.py advanced_metrics.py tests
+        run: python -m compileall -q evaluate.py advanced_metrics.py portfolio_bridge.py tests
       - name: Lint
         run: ruff check . --output-format=github
       - name: Run tests with coverage
@@ -35,3 +35,5 @@ jobs:
         run: python evaluate.py sample_cases.json
       - name: Smoke test HTML report
         run: python evaluate.py sample_cases.json --html /tmp/evaluation-report.html
+      - name: Evaluate RAG-agent integration evidence
+        run: python portfolio_bridge.py sample_portfolio_run.json sample_portfolio_expected.json --output /tmp/portfolio-evaluation.json
