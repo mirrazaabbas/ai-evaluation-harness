@@ -82,14 +82,10 @@ def ndcg_at_k(relevant_ids: list[str], retrieved_ids: list[str], k: int) -> floa
 def citation_precision_recall(expected: list[str], actual: list[str]) -> dict[str, float]:
     expected_set = set(expected)
     actual_set = set(actual)
-    if not actual_set:
-        precision = 1.0 if not expected_set else 0.0
-    else:
-        precision = len(expected_set & actual_set) / len(actual_set)
-    if not expected_set:
-        recall = 1.0
-    else:
-        recall = len(expected_set & actual_set) / len(expected_set)
+    precision = (
+        1.0 if not expected_set else 0.0
+    ) if not actual_set else len(expected_set & actual_set) / len(actual_set)
+    recall = 1.0 if not expected_set else len(expected_set & actual_set) / len(expected_set)
     return {"precision": precision, "recall": recall}
 
 
