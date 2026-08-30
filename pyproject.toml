@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=75", "wheel"]
+requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -8,13 +8,13 @@ version = "1.0.0"
 description = "Deterministic and extensible evaluation tooling for AI, RAG and agent systems."
 readme = "README.md"
 requires-python = ">=3.10"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{name = "Mir Raza Abbas"}]
 keywords = ["llm-evaluation", "rag", "agents", "benchmarking", "llmops"]
 classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
-  "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
 ]
 dependencies = []
@@ -28,7 +28,7 @@ Repository = "https://github.com/mirrazaabbas/ai-evaluation-harness"
 Issues = "https://github.com/mirrazaabbas/ai-evaluation-harness/issues"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {ai_evaluation_harness = "src/ai_evaluation_harness"}
 py-modules = [
   "evaluate",
   "advanced_metrics",
